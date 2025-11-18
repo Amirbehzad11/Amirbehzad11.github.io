@@ -1,10 +1,617 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>سایت من</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه شخصی - پورتفولیو</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        /* About */
+        .about-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-right: 5px solid #667eea;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-bar {
+            background: #e9ecef;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            animation: fillBar 1.5s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            padding-right: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -46px;
+            top: 30px;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .company {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .period {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .project-header h3 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+
+        .project-tech {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .contact-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            .contact-info { gap: 15px; }
+            .timeline { padding-right: 30px; }
+        }
+    </style>
 </head>
 <body>
-  <h1>سلام! این سایت شخصی امیر عباس است.</h1>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-img">👨‍💻</div>
+            <h1>نام و نام خانوادگی شما</h1>
+            <div class="title">توسعه‌دهنده فول‌استک | متخصص React & Node.js</div>
+            <div class="contact-info">
+                <div class="contact-item">📧 your.email@example.com</div>
+                <div class="contact-item">📱 +98 912 345 6789</div>
+                <div class="contact-item">📍 تهران، ایران</div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('about')">درباره من</button>
+            <button class="nav-btn" onclick="showSection('skills')">مهارت‌ها</button>
+            <button class="nav-btn" onclick="showSection('experience')">تجربیات</button>
+            <button class="nav-btn" onclick="showSection('projects')">پروژه‌ها</button>
+            <button class="nav-btn" onclick="showSection('contact')">تماس</button>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- About Section -->
+            <div id="about" class="section active">
+                <h2>✨ درباره من</h2>
+                <div class="about-text">
+                    <p>
+                        سلام! من یک توسعه‌دهنده فول‌استک با بیش از 5 سال تجربه در طراحی و توسعه برنامه‌های وب مدرن هستم. 
+                        علاقه‌مند به یادگیری تکنولوژی‌های جدید و حل مسائل پیچیده با راه‌حل‌های خلاقانه.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        تخصص من در React، Node.js، و معماری‌های مدرن وب است. همیشه به دنبال چالش‌های جدید و فرصت‌های یادگیری هستم.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="skills" class="section">
+                <h2>💼 مهارت‌های من</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">React & Next.js</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Node.js & Express</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">TypeScript</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python & Django</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PostgreSQL & MongoDB</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Docker & AWS</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div id="experience" class="section">
+                <h2>🚀 تجربیات کاری</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Senior Full-Stack Developer</h3>
+                        <div class="company">🏢 شرکت فناوری XYZ</div>
+                        <div class="period">⏰ 1401 - اکنون</div>
+                        <p>
+                            رهبری تیم توسعه شامل 5 نفر و پیاده‌سازی پروژه‌های بزرگ با استفاده از React، Node.js و معماری Microservices.
+                            بهبود عملکرد سیستم به میزان 40% و کاهش زمان بارگذاری صفحات.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Full-Stack Developer</h3>
+                        <div class="company">🚀 استارتاپ ABC</div>
+                        <div class="period">⏰ 1398 - 1401</div>
+                        <p>
+                            توسعه و نگهداری پلتفرم تجارت الکترونیک با بیش از 10,000 کاربر فعال. 
+                            پیاده‌سازی سیستم پرداخت آنلاین و بهینه‌سازی تجربه کاربری.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Junior Developer</h3>
+                        <div class="company">💻 شرکت نرم‌افزاری DEF</div>
+                        <div class="period">⏰ 1396 - 1398</div>
+                        <p>
+                            شروع کار حرفه‌ای با تمرکز بر توسعه Front-end با React و یادگیری بهترین شیوه‌های برنامه‌نویسی.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projects" class="section">
+                <h2>🎯 پروژه‌های برجسته</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🛍️ پلتفرم فروشگاهی</h3>
+                            <div class="project-tech">React • Node.js • PostgreSQL • Redis</div>
+                        </div>
+                        <div class="project-body">
+                            پلتفرم کامل تجارت الکترونیک با پنل مدیریت پیشرفته، سیستم سبد خرید، پرداخت آنلاین و مدیریت موجودی.
+                            بیش از 50,000 تراکنش موفق در ماه اول راه‌اندازی.
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>📊 سیستم مدیریت پروژه</h3>
+                            <div class="project-tech">Next.js • MongoDB • AWS • Socket.io</div>
+                        </div>
+                        <div class="project-body">
+                            ابزار مدیریت پروژه برای تیم‌های چابک با قابلیت‌های Real-time، مدیریت وظایف، گزارش‌گیری و اتوماسیون.
+                            استفاده توسط 20+ تیم با بیش از 200 کاربر فعال.
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🎓 پلتفرم آموزشی آنلاین</h3>
+                            <div class="project-tech">React • Django • PostgreSQL</div>
+                        </div>
+                        <div class="project-body">
+                            سیستم یادگیری آنلاین با قابلیت برگزاری کلاس‌های زنده، آزمون‌های آنلاین و ردیابی پیشرفت دانشجویان.
+                            میزبان بیش از 5,000 دانشجو در 100+ دوره آموزشی.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="section">
+                <h2>📞 تماس با من</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>ایمیل</h3>
+                        <p>your.email@example.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <h3>تلفن</h3>
+                        <p>+98 912 345 6789</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/yourprofile</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>github.com/yourprofile</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="#" class="download-btn">📥 دانلود رزومه PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>

@@ -1,62 +1,124 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رزومه امیر عباس</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه من - امیر عباس بهزاد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset ساده */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Vazirmatn', sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* هدر */
+        header { background: #4f46e5; color: white; padding: 2rem 1rem; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; }
+
+        /* ناوبری */
+        nav { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+        nav a { color: white; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #facc15; }
+
+        /* بخش‌ها */
+        section { padding: 4rem 1rem; max-width: 1000px; margin: auto; }
+        section h2 { font-size: 2rem; margin-bottom: 1.5rem; color: #4f46e5; text-align: center; }
+
+        /* درباره من */
+        .about { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center; }
+        .about img { width: 250px; border-radius: 50%; }
+        .about .text { max-width: 600px; text-align: justify; }
+
+        /* مهارت‌ها */
+        .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .skill { background: #e0e7ff; padding: 1rem 2rem; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        .skill:hover { background: #c7d2fe; }
+
+        /* پروژه‌ها */
+        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .project { background: white; border-radius: 10px; padding: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .project:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+        /* تماس */
+        .contact form { max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .contact input, .contact textarea { padding: 1rem; border: 1px solid #ccc; border-radius: 5px; }
+        .contact button { padding: 1rem; background: #4f46e5; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .contact button:hover { background: #3730a3; }
+
+        /* فوتر */
+        footer { text-align: center; padding: 2rem; background: #4f46e5; color: white; margin-top: 2rem; }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>امیر عباس بهزاد</h1>
-      <p class="title">برنامه‌نویس Full Stack | PHP, Laravel, JavaScript</p>
-    </div>
-  </header>
 
-  <section class="about container">
+<header>
+    <h1>امیر عباس بهزاد</h1>
+    <p>توسعه‌دهنده وب | برنامه‌نویس PHP و Laravel | علاقه‌مند به React و AI</p>
+    <nav>
+        <a href="#about">درباره من</a>
+        <a href="#skills">مهارت‌ها</a>
+        <a href="#projects">پروژه‌ها</a>
+        <a href="#contact">تماس</a>
+    </nav>
+</header>
+
+<section id="about">
     <h2>درباره من</h2>
-    <p>
-      من یک برنامه‌نویس با سابقه ۴ سال در PHP، Laravel و JavaScript هستم.
-      علاقه‌مند به پروژه‌های چالش‌برانگیز و توسعه وب اپلیکیشن‌های با کیفیت.
-    </p>
-  </section>
+    <div class="about">
+        <img src="https://via.placeholder.com/250" alt="عکس من">
+        <div class="text">
+            <p>سلام! من امیر عباس بهزاد هستم، توسعه‌دهنده وب با تمرکز بر PHP، Laravel و React. علاقه‌مند به یادگیری فناوری‌های جدید و هوش مصنوعی هستم و دوست دارم پروژه‌هایی بسازم که هم مفید باشند و هم نوآورانه.</p>
+        </div>
+    </div>
+</section>
 
-  <section class="experience container">
-    <h2>تجربه کاری</h2>
-    <ul>
-      <li>
-        <strong>شارین پارس ایرانیان</strong> - کارشناس انفورماتیک (2023-اکنون)
-      </li>
-      <li>
-        <strong>سافرمهر خاوند</strong> - توسعه‌دهنده وب (2022)
-      </li>
-      <li>
-        <strong>شرکت وب یاران</strong> - توسعه‌دهنده PHP (2021)
-      </li>
-    </ul>
-  </section>
-
-  <section class="skills container">
+<section id="skills">
     <h2>مهارت‌ها</h2>
-    <ul>
-      <li>PHP / Laravel</li>
-      <li>JavaScript / Vue.js</li>
-      <li>HTML / CSS / Tailwind</li>
-      <li>Node.js / Docker</li>
-      <li>Git / GitHub</li>
-    </ul>
-  </section>
+    <div class="skills">
+        <div class="skill">PHP</div>
+        <div class="skill">Laravel</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">Docker</div>
+        <div class="skill">شبکه و امنیت</div>
+    </div>
+</section>
 
-  <section class="contact container">
-    <h2>تماس</h2>
-    <p>ایمیل: example@email.com</p>
-    <p>تلفن: 0912xxxxxxx</p>
-    <p>GitHub: <a href="https://github.com/username" target="_blank">github.com/username</a></p>
-  </section>
+<section id="projects">
+    <h2>پروژه‌ها</h2>
+    <div class="projects">
+        <div class="project">
+            <h3>سیستم مدیریت املاک</h3>
+            <p>یک سیستم وب برای مدیریت و فروش املاک با Laravel و React.</p>
+        </div>
+        <div class="project">
+            <h3>ربات پاسخگو اینستاگرام</h3>
+            <p>سیستمی هوشمند برای پاسخ‌دهی به کامنت‌ها و دایرکت کاربران.</p>
+        </div>
+        <div class="project">
+            <h3>سیستم بسته‌بندی هوشمند</h3>
+            <p>ابزاری برای بهینه‌سازی بسته‌بندی محصولات با الگوریتم 3D Bin Packing.</p>
+        </div>
+    </div>
+</section>
 
-  <footer>
-    <p>© 2025 امیر عباس بهزاد. همه حقوق محفوظ است.</p>
-  </footer> </body> </html>
+<section id="contact">
+    <h2>تماس با من</h2>
+    <div class="contact">
+        <form>
+            <input type="text" placeholder="نام شما" required>
+            <input type="email" placeholder="ایمیل شما" required>
+            <textarea rows="5" placeholder="پیام شما" required></textarea>
+            <button type="submit">ارسال پیام</button>
+        </form>
+    </div>
+</section>
 
+<footer>
+    &copy; 2025 امیر عباس بهزاد. تمامی حقوق محفوظ است.
+</footer>
 
+</body>
+</html>
